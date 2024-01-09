@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}Home - {{ super() }}{% endblock %}
+{% block main_heading %}Manifests{% endblock %}
+
+{% block content %}
+<div class="TopSearch mb-3 pt-2 pb-2 row align-items-center bg-light container-fluid">
+    <form method="GET" action="{{ url_for('search_manifests') }}" class="col-md-6">
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" class="form-control" name="bill_number" placeholder="Enter Bill Number">
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-info">
+                    <i class="fas fa-search"></i> <span class="btnAlt">Search</span>
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div class="col-md-6 d-flex justify-content-between align-items-center">
+        <div class="col-md-6">
+            <!-- Empty div to create space between search and add buttons -->
+        </div>
+        <div class="col-md-6 text-right">
+            <button onclick="addNew()" class="btn btn-success">
+                <i class="fa fa-plus"></i> <span class="btnAlt">ADD NEW MANIFEST</span>
+            </button>
+        </div>
+    </div>
+</div>
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>Bill No.</th>
+            <th>MOT</th>
+            <th>Pkg Count</th>
+            <th>Gross Weight</th>
+            <th>Gross Volume</th>
+            <th>Net Cost</th>
+            <th>Net Freight</th>
+            <th>Arrival Date</th>
+            <th>Departure Date</th>
+            <th>Create Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for manifest in items %}
+        <tr>
+            <td>{{ manifest.billnumber }}</td>
+            <td>{{ manifest.transportation }}</td>
+            <td>{{ manifest.pkgcount }}</td>
+            <td>{{ manifest.grosswt }} {{ manifest.grosswtunit }}</td>
+            <td>{{ manifest.grossvol }}</td>
+            <td>{{ manifest.netcost }}</td>
+            <td>{{ manifest.netfreight }}</td>
+            <td>{{ manifest.arrivaldate }}</td>
+            <td>{{ manifest.departuredate }}</td>
+            <td>{{ manifest.dateOfEntry }}</td>
+            <td>
+                <a class="action-btn btn btn-outline-info rounded-circle"
+                    href="{{ url_for('edit_manifest', id=manifest.id) }}" title="Edit">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a class="action-btn btn btn-outline-success rounded-circle ml-2"
+                    href="{{ url_for('download_manifest', id=manifest.id) }}" title="Download">
+                    <i class="fas fa-download"></i>
+                </a>
+                <form method="post" action="{{ url_for('delete_manifest', id=manifest.id) }}"
+                    onsubmit="return confirm('Are you sure you want to delete this manifest?');"
+                    class="d-inline-block ml-2">
+                    <input type="hidden" name="_method" value="delete">
+                    <button type="submit" class="action-btn btn btn-outline-danger rounded-circle" title="Delete">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </form>
+            </td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% endblock %}

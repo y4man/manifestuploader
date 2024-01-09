@@ -1,0 +1,859 @@
+{% extends "base.html" %}
+{% block title %}Edit Manifest - {{ super() }}{% endblock %}
+{% block main_heading %}Edit Manifest{% endblock %}
+    <!-- Navigation bar or other header content goes here -->
+
+    {% block content %}
+    <div class="manifestTabs container-fluid">
+        <a href="/display_manifest" class="btn btn-outline-info my-3">
+            <i class="fas fa-arrow-left"></i> Back
+        </a>
+
+        <div class="container mt-4">
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <button id="edit_form_btn" class="btn btn-success mx-5" type="submit">Save and Change</button>
+              </div>
+            </div>
+          </div>
+        
+        <!-- Nav tabs -->
+        <ul class=" nav nav-tabs my-2" role="tablist">
+            <li class="nav-item bg-light">
+                <a class="nav-link active" data-toggle="tab" href="#manifest" role="tab">Manifest</a>
+            </li>
+            <li class="nav-item bg-light">
+                <a class="nav-link" data-toggle="tab" href="#packages" role="tab">Packages</a>
+            </li>
+          
+        </ul>
+       
+                <!-- Tab panes -->
+                <div class="tab-content my-4 bg-light">
+                    <div class="tab-pane active" id="manifest" role="tabpanel">
+                        <form id="edit_form" method="post" action="{{ url_for('edit_manifest', id=manifest.id) }}"
+                            onsubmit="return confirm('Are you sure you want to edit this manifest?');">
+
+
+
+                            <input name="__RequestVerificationToken" type="hidden"
+                                value="7LPtD_eMkcQEGvhNT4oSH3VkUanoC1S53VhhXcn98rWVZCMqzG4fGBCQfrX7BWDD0pBzQtzSo73ZTaxPbejEIfEcg9ru5EJriLmGe0fbZo99zgKeC4LcXxvi6qqy92DN0" />
+
+                            <input type="hidden" id="ret" name="ret"
+                                value="https://apost.sanmolapps.com/?billno=17522497123&amp;mot=&amp;createby=" />
+                            
+                            <div class="tab-pane active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+
+
+                                <input data-val="true" data-val-number="The field id must be a number."
+                                    data-val-required="The id field is required." id="id" name="id" type="hidden"
+                                    value="3162" />
+                                <input id="mot" name="mot" type="hidden" value="AIR" />
+                                <input data-val="true" data-val-date="The field createdate must be a date."
+                                    id="createdate" name="createdate" type="hidden" value="12/20/2023 7:54:07 AM" />
+                                <div class="form-row mt_10">
+                                    <div class="col-md-4 form-group">
+
+                                        <label class="" for="doe">Date of Entry</label>
+                                        <input type="date" name="doe" value="{{ manifest.dateOfEntry }}"
+                                            class="datepicker form-control" autocomplete="off" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="doe"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="vesselcode">Airline</label>
+                                        <select class=" form-control selectpicker" data-live-search="true"
+                                            data-show-subtext="true" id="vesselcode" name="vesselcode">
+                                            <option value="AA">American Airlines</option>
+                                            <option value="BA">British Airways</option>
+                                            <option value="CA">Canadian Airways</option>
+                                            <option value="KX">Cayman Airways</option>
+                                            <option selected="selected" value="{{ manifest.airLine }}">Ibc Airways
+                                            </option>
+                                            <option value="B6">Jetblue Airways</option>
+                                            <option value="UA">United Airlines</option>
+                                        </select>
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="vesselcode"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="voyogeno">Flight Number</label>
+                                        <select class=" form-control selectpicker" data-live-search="true"
+                                            data-show-subtext="true" id="voyogeno" name="voyogeno">
+                                            <option value="1007">AA 1007 - MIA -&gt; GCM</option>
+                                            <option value="103">KX 103 - MIA -&gt; GCM</option>
+                                            <option value="105">KX 105 - MIA -&gt; GCM</option>
+                                            <option value="107">KX 107 - MIA -&gt; GCM</option>
+                                            <option value="109">KX 109 - MIA -&gt; GCM</option>
+                                            <option value="123">KX 123 - MIA -&gt; GCM</option>
+                                            <option value="1300">AA 1300 - MIA -&gt; GCM</option>
+                                            <option value="1494">UA 1494 - HOU -&gt; GCM</option>
+                                            <option value="1552">AA 1552 - MIA -&gt; GCM</option>
+                                            <option value="1737">AA 1737 - MIA -&gt; GCM</option>
+                                            <option value="1962">AA 1962 - CLT -&gt; GCM</option>
+                                            <option value="201">KX 201 - TPA -&gt; GCM</option>
+                                            <option value="203">KX 203 - TPA -&gt; GCM</option>
+                                            <option value="205">KX 205 - TPA -&gt; GCM</option>
+                                            <option value="2105">KX 2105 - MIA -&gt; GCM</option>
+                                            <option selected="selected" value="{{ manifest.flightNumber }}">IB 211 - MIA
+                                                -&gt;
+                                                GCM</option>
+                                            <option value="253">BA 253 - LHR -&gt; GCM</option>
+                                            <option value="2909">KX 2909 - MIA -&gt; GCM</option>
+                                            <option value="3105">KX 3105 - MIA -&gt; GCM</option>
+                                            <option value="355">AA 355 - DFW -&gt; GCM</option>
+                                            <option value="378">AA 378 - MIA -&gt; GCM</option>
+                                            <option value="490">CA 490 - PTY -&gt; GCM</option>
+                                            <option value="601">KX 601 - KIN -&gt; GCM</option>
+                                            <option value="607">KX 607 - KIN -&gt; GCM</option>
+                                            <option value="609">KX 609 - KIN -&gt; GCM</option>
+                                            <option value="621">KX 621 - KIN -&gt; GCM</option>
+                                            <option value="63">AA 63 - MIA -&gt; GCM</option>
+                                            <option value="717">AA 717 - MIA -&gt; GCM</option>
+                                            <option value="725">AA 725 - MIA -&gt; GCM</option>
+                                            <option value="725">IB 725 - MIA -&gt; GCM</option>
+                                            <option value="765">B6 765 - JFK -&gt; GCM</option>
+                                            <option value="806">AA 806 - CHI -&gt; GCM</option>
+                                            <option value="819">AA 819 - MIA -&gt; GCM</option>
+                                            <option value="821">AA 821 - MIA -&gt; GCM</option>
+                                            <option value="883">KX 883 - LCE -&gt; GCM</option>
+                                            <option value="885">KX 885 - RTB -&gt; GCM</option>
+                                            <option value="909">KX 909 - MIA -&gt; GCM</option>
+                                            <option value="956">AA 956 - MIA -&gt; GCM</option>
+                                        </select>
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="voyogeno"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="carrier">Carrier</label>
+                                        <select class=" form-control selectpicker" data-live-search="true"
+                                            data-show-subtext="true" id="carrier" name="carrier">
+                                            <option value="">None</option>
+                                            <option value="AA">AA - American Airlines</option>
+                                            <option value="AC">AC - Air Canada</option>
+                                            <option value="BA">BA - British Airlines</option>
+                                            <option value="BS">BS - Bodden Shipping Agency Ltd</option>
+                                            <option value="CA">CA - Caribbean Aggregate</option>
+                                            <option value="CF">CF - Cayman Freight Shipping Servic</option>
+                                            <option value="CI">CI - Cayman Islands Customs Agency</option>
+                                            <option value="DL">DL - Delta Airlines</option>
+                                            <option value="EL">EL - DHL International</option>
+                                            <option value="ES">ES - Esso Standard Oil</option>
+                                            <option value="EW">EW - Easyway Express</option>
+                                            <option value="FX">FX - Federal Express</option>
+                                            <option value="HG">HG - Home Gas</option>
+                                            <option value="HS">HS - Hyde Shipping</option>
+                                            <option selected="selected" value="{{ manifest.carrier }}">II - IBC Airways
+                                            </option>
+                                            <option value="KX">KX - Cayman Airways</option>
+                                            <option value="MB">MB - Miracle Brokers</option>
+                                            <option value="NC">NC - NCI Express</option>
+                                            <option value="OT">OT - Other</option>
+                                            <option value="RU">RU - RUBIS Fuel and Oil</option>
+                                            <option value="SB">SB - Seaboard Marine</option>
+                                            <option value="SH">SH - Shelby&#39;s Agency and Stevedorin</option>
+                                            <option value="SO">SO - SOL Petroleum</option>
+                                            <option value="SP">SP - Sprint Express Services</option>
+                                            <option value="TS">TS - Thompson/Tropical Shipping Co </option>
+                                            <option value="UP">UP - United Parcel Service (UPS)</option>
+                                            <option value="WI">WI - West Indian Shipping Ltd</option>
+                                        </select>
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="carrier"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="carriername">Shipping Agent/Carrier Name</label>
+                                        <input class="form-control text-box single-line" id="carriername"
+                                            name="carriername" type="text" value="Aeropost" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="carriername"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="shippingport">Shipping Port</label>
+                                        <select class=" form-control selectpicker" data-live-search="true"
+                                            data-show-subtext="true" id="shippingport" name="shippingport">
+                                            <option value="">None</option>
+                                            <option value="BESML">Sint-Martens-Latem, VOV</option>
+                                            <option value="COPCC">Puerto Rico, CAQ</option>
+                                            <option value="GBLHR">Heathrow Apt/London, HIL</option>
+                                            <option value="GBHEQ">Heaton, LAN</option>
+                                            <option value="GBWOB">Suttonheath</option>
+                                            <option value="GBKKH">Kirkheaton, NFK</option>
+                                            <option value="GBMHT">Martlesham Heath, SFK</option>
+                                            <option value="GBNNR">Normanton le Heath, LEC</option>
+                                            <option value="PKPAJ">Para Chinar</option>
+                                            <option value="JPCHI">China, 46</option>
+                                            <option value="JPCNS">Chinase, 46</option>
+                                            <option value="JPHIC">Hitachinaka, 8</option>
+                                            <option value="JPNIC">Nichinan, 45</option>
+                                            <option value="KYCYB">Cayman Brac</option>
+                                            <option value="KYGEC">Georgetown, Grand Cayman</option>
+                                            <option value="JMKIN">Kingston</option>
+                                            <option value="USPEF">Port Everglades, FL</option>
+                                            <option value="USNYC">New York, NY</option>
+                                            <option value="USMNH">Manhattan/New York, NY</option>
+                                            <option selected="selected" value="{{ manifest.carriername }}">Miami, FL
+                                            </option>
+                                            <option value="USCZO">Chistochina, AK</option>
+                                            <option value="USFLU">Flushing Apt/New York, NY</option>
+                                            <option value="USBOY">Brooklyn/New York, NY</option>
+                                            <option value="BOPUR">Puerto Rico, N</option>
+                                            <option value="USPBI">West Palm Beach, FL</option>
+                                            <option value="GBSJJ">Small Heath, BIR</option>
+                                            <option value="USJFK">John F. Kennedy Apt/New York, NY</option>
+                                            <option value="USLGA">La Guardia Apt/New York, NY</option>
+                                        </select>
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="shippingport"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="billnumber">Bill Number</label>
+                                        <input class="form-control text-box single-line" id="billnumber"
+                                            name="billnumber" type="text" value="{{ manifest.billnumber }}" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="billnumber"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="pkgcount">Package Count</label>
+                                        <input class="form-control text-box single-line" data-val="true"
+                                            data-val-number="The field pkgcount must be a number." id="pkgcount"
+                                            name="pkgcount" type="number" value="{{ manifest.pkgcount }}" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="pkgcount"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="pkgtype">Package Type</label>
+                                        <select class=" form-control selectpicker" data-live-search="true"
+                                            data-show-subtext="true" id="pkgtype" name="pkgtype">
+                                            <option value="">None</option>
+                                            <option selected="selected" value="{{ manifest.pkgtype }}">Bag (BG)</option>
+                                            <option value="BL">Bale, compressed (BL)</option>
+                                            <option value="BR">Bar (BR)</option>
+                                            <option value="BA">Barrel (BA)</option>
+                                            <option value="BK">Basket (BK)</option>
+                                            <option value="BD">Board (BD)</option>
+                                            <option value="BX">Box (BX)</option>
+                                            <option value="VL">Bulk, liquid (VL)</option>
+                                            <option value="BE">Bundle (BE)</option>
+                                            <option value="CG">Cage (CG)</option>
+                                            <option value="CT">Carton (CT)</option>
+                                            <option value="CS">Case (CS)</option>
+                                            <option value="CJ">Coffin (CJ)</option>
+                                            <option value="CN">Container, not otherwise specified as transport equipment
+                                                (CN)
+                                            </option>
+                                            <option value="CR">Crate (CR)</option>
+                                            <option value="MC">Crate, milk (MC)</option>
+                                            <option value="CY">Cylinder (CY)</option>
+                                            <option value="DR">Drum (DR)</option>
+                                            <option value="WA">Intermediate bulk container (WA)</option>
+                                            <option value="WF">Intermediate bulk container, metal (WF)</option>
+                                            <option value="ZX">Intermediate bulk container, plywood (ZX)</option>
+                                            <option value="KG">Keg (KG)</option>
+                                            <option value="PK">Package (PK)</option>
+                                            <option value="PL">Pail (PL)</option>
+                                            <option value="PX">Pallet (PX)</option>
+                                            <option value="PC">Parcel (PC)</option>
+                                            <option value="RF">Reefer (RF)</option>
+                                            <option value="RL">Reel (RL)</option>
+                                            <option value="RO">Roll (RO)</option>
+                                            <option value="ST">Sheet (ST)</option>
+                                            <option value="SI">Skid (SI)</option>
+                                            <option value="SU">Suitcase (SU)</option>
+                                            <option value="TY">Tank, cylindrical (TY)</option>
+                                            <option value="TK">Tank, rectangular (TK)</option>
+                                            <option value="TA">Trailer, for Boats (TA)</option>
+                                            <option value="TU">Tube (TU)</option>
+                                            <option value="NE">Unpacked or unpackaged (NE)</option>
+                                            <option value="VN">Vehicle (VN)</option>
+                                        </select>
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="pkgtype"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="grosswt">Gross Weight</label>
+                                        <input class="form-control text-box single-line" data-val="true"
+                                            data-val-number="The field grosswt must be a number." id="grosswt"
+                                            name="grosswt" type="text" value="{{ manifest.grosswt }}" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="grosswt"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="grosswtunit">Gross Weight Unit</label>
+                                        <select autocomplete="off" class=" form-control selectpicker" id="grosswtunit"
+                                            name="grosswtunit">
+                                            <option selected="selected" value="LB">LB</option>
+                                            <option value="{{ manifest.grosswtunit }}">KG</option>
+                                        </select>
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="grosswtunit"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="grossvol">Gross Volume</label>
+                                        <input class="form-control text-box single-line" data-val="true"
+                                            data-val-number="The field grossvol must be a number." id="grossvol"
+                                            name="grossvol" type="text" value="{{ manifest.grossvol }}" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="grossvol"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="grossvolunit">Gross Volume Unit</label>
+                                        <select autocomplete="off" class=" form-control selectpicker" id="grossvolunit"
+                                            name="grossvolunit">
+                                            <option selected="selected" value="{{ manifest.grossvolunit }}">CF</option>
+                                            <option value="M3">M3</option>
+                                        </select>
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="grossvolunit"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="ffname">FF Name</label>
+                                        <input class="form-control text-box single-line" id="ffname" name="ffname"
+                                            type="text" value="{{ manifest.ffname }}" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="ffname"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="ffaddress">FF Address</label>
+                                        <input class="form-control text-box single-line" id="ffaddress" name="ffaddress"
+                                            type="text" value="{{ manifest.ffaddress }}" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="ffaddress"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="ffcity">FF City</label>
+                                        <input class="form-control text-box single-line" id="ffcity" name="ffcity"
+                                            type="text" value="{{ manifest.ffcity }}" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="ffcity"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="ffstate">FF State</label>
+                                        <input class="form-control text-box single-line" id="ffstate" name="ffstate"
+                                            type="text" value="{{ manifest.ffstate }}" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="ffstate"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="ffcountry">FF Country</label>
+                                        <select class=" form-control selectpicker" data-live-search="true"
+                                            data-show-subtext="true" id="ffcountry" name="ffcountry">
+                                            <option value="">Country</option>
+                                            <option value="AFG">Afghanistan</option>
+                                            <option value="ALA">Aland Islands</option>
+                                            <option value="ALB">Albania</option>
+                                            <option value="DZA">Algeria</option>
+                                            <option value="ASM">American Samoa</option>
+                                            <option value="AND">Andorra</option>
+                                            <option value="AIA">Anguilla</option>
+                                            <option value="A">Anla</option>
+                                            <option value="ATA">Antarctica</option>
+                                            <option value="ATG">Antigua and Barbuda</option>
+                                            <option value="ARG">Argentina</option>
+                                            <option value="ARM">Armenia</option>
+                                            <option value="ABW">Aruba</option>
+                                            <option value="AUS">Australia</option>
+                                            <option value="AUT">Austria</option>
+                                            <option value="AZE">Azerbaijan</option>
+                                            <option value="BHS">Bahamas</option>
+                                            <option value="BHR">Bahrain</option>
+                                            <option value="BGD">Bangladesh</option>
+                                            <option value="BRB">Barbados</option>
+                                            <option value="BLR">Belarus</option>
+                                            <option value="BEL">Belgium</option>
+                                            <option value="BLZ">Belize</option>
+                                            <option value="BEN">Benin</option>
+                                            <option value="BMU">Bermuda</option>
+                                            <option value="BTN">Bhutan</option>
+                                            <option value="BOL">Bolivia</option>
+                                            <option value="BIH">Bosnia and Herzevina</option>
+                                            <option value="BWA">Botswana</option>
+                                            <option value="BVT">Bouvet Island</option>
+                                            <option value="BRA">Brazil</option>
+                                            <option value="IOT">British Indian Ocean Territory</option>
+                                            <option value="VGB">British Virgin Islands</option>
+                                            <option value="BRN">Brunei Darussalam</option>
+                                            <option value="BGR">Bulgaria</option>
+                                            <option value="BFA">Burkina Faso</option>
+                                            <option value="BDI">Burundi</option>
+                                            <option value="KHM">Cambodia</option>
+                                            <option value="CMR">Cameroon</option>
+                                            <option value="CAN">Canada</option>
+                                            <option value="CPV">Cape Verde</option>
+                                            <option value="CYM">Cayman Islands</option>
+                                            <option value="CAF">Central African Republic</option>
+                                            <option value="TCD">Chad</option>
+                                            <option value="CHL">Chile</option>
+                                            <option value="CHN">China</option>
+                                            <option value="CXR">Christmas Island</option>
+                                            <option value="CCK">Cocos (Keeling) Islands</option>
+                                            <option value="COL">Colombia</option>
+                                            <option value="COM">Comoros</option>
+                                            <option value="COG">Con&#160;(Brazzaville)</option>
+                                            <option value="COD">Con, (Kinshasa)</option>
+                                            <option value="COK">Cook Islands</option>
+                                            <option value="CRI">Costa Rica</option>
+                                            <option value="CIV">C&#244;te dIvoire</option>
+                                            <option value="HRV">Croatia</option>
+                                            <option value="CUB">Cuba</option>
+                                            <option value="CYP">Cyprus</option>
+                                            <option value="CZE">Czech Republic</option>
+                                            <option value="DNK">Denmark</option>
+                                            <option value="DJI">Djibouti</option>
+                                            <option value="DMA">Dominica</option>
+                                            <option value="DOM">Dominican Republic</option>
+                                            <option value="ECU">Ecuador</option>
+                                            <option value="EGY">Egypt</option>
+                                            <option value="SLV">El Salvador</option>
+                                            <option value="GNQ">Equatorial Guinea</option>
+                                            <option value="ERI">Eritrea</option>
+                                            <option value="EST">Estonia</option>
+                                            <option value="ETH">Ethiopia</option>
+                                            <option value="FLK">Falkland Islands (Malvinas)</option>
+                                            <option value="FRO">Faroe Islands</option>
+                                            <option value="FJI">Fiji</option>
+                                            <option value="FIN">Finland</option>
+                                            <option value="FRA">France</option>
+                                            <option value="GUF">French Guiana</option>
+                                            <option value="PYF">French Polynesia</option>
+                                            <option value="ATF">French Southern Territories</option>
+                                            <option value="GAB">Gabon</option>
+                                            <option value="GMB">Gambia</option>
+                                            <option value="GEO">Georgia</option>
+                                            <option value="DEU">Germany</option>
+                                            <option value="GHA">Ghana</option>
+                                            <option value="GIB">Gibraltar</option>
+                                            <option value="GRC">Greece</option>
+                                            <option value="GRL">Greenland</option>
+                                            <option value="GRD">Grenada</option>
+                                            <option value="GLP">Guadeloupe</option>
+                                            <option value="GUM">Guam</option>
+                                            <option value="GTM">Guatemala</option>
+                                            <option value="GGY">Guernsey</option>
+                                            <option value="GIN">Guinea</option>
+                                            <option value="GNB">Guinea-Bissau</option>
+                                            <option value="GUY">Guyana</option>
+                                            <option value="HTI">Haiti</option>
+                                            <option value="HMD">Heard and Mcdonald Islands</option>
+                                            <option value="VAT">Holy See&#160;(Vatican City State)</option>
+                                            <option value="HND">Honduras</option>
+                                            <option value="HKG">Hong Kong, SAR China</option>
+                                            <option value="HUN">Hungary</option>
+                                            <option value="ISL">Iceland</option>
+                                            <option value="IND">India</option>
+                                            <option value="IDN">Indonesia</option>
+                                            <option value="IRN">Iran, Islamic Republic of</option>
+                                            <option value="IRQ">Iraq</option>
+                                            <option value="IRL">Ireland</option>
+                                            <option value="IMN">Isle of Man</option>
+                                            <option value="ISR">Israel</option>
+                                            <option value="ITA">Italy</option>
+                                            <option value="JAM">Jamaica</option>
+                                            <option value="JPN">Japan</option>
+                                            <option value="JEY">Jersey</option>
+                                            <option value="JOR">Jordan</option>
+                                            <option value="KAZ">Kazakhstan</option>
+                                            <option value="KEN">Kenya</option>
+                                            <option value="KIR">Kiribati</option>
+                                            <option value="PRK">Korea&#160;(North)</option>
+                                            <option value="KOR">Korea&#160;(South)</option>
+                                            <option value="KWT">Kuwait</option>
+                                            <option value="KGZ">Kyrgyzstan</option>
+                                            <option value="LAO">Lao PDR</option>
+                                            <option value="LVA">Latvia</option>
+                                            <option value="LBN">Lebanon</option>
+                                            <option value="LSO">Lesotho</option>
+                                            <option value="LBR">Liberia</option>
+                                            <option value="LBY">Libya</option>
+                                            <option value="LIE">Liechtenstein</option>
+                                            <option value="LTU">Lithuania</option>
+                                            <option value="LUX">Luxembourg</option>
+                                            <option value="MAC">Macao, SAR China</option>
+                                            <option value="MKD">Macedonia, Republic of</option>
+                                            <option value="MDG">Madagascar</option>
+                                            <option value="MWI">Malawi</option>
+                                            <option value="MYS">Malaysia</option>
+                                            <option value="MDV">Maldives</option>
+                                            <option value="MLI">Mali</option>
+                                            <option value="MLT">Malta</option>
+                                            <option value="MHL">Marshall Islands</option>
+                                            <option value="MTQ">Martinique</option>
+                                            <option value="MRT">Mauritania</option>
+                                            <option value="MUS">Mauritius</option>
+                                            <option value="MYT">Mayotte</option>
+                                            <option value="MEX">Mexico</option>
+                                            <option value="FSM">Micronesia, Federated States of</option>
+                                            <option value="MDA">Moldova</option>
+                                            <option value="MCO">Monaco</option>
+                                            <option value="MNG">Monlia</option>
+                                            <option value="MNE">Montenegro</option>
+                                            <option value="MSR">Montserrat</option>
+                                            <option value="MAR">Morocco</option>
+                                            <option value="MOZ">Mozambique</option>
+                                            <option value="MMR">Myanmar</option>
+                                            <option value="NAM">Namibia</option>
+                                            <option value="NRU">Nauru</option>
+                                            <option value="NPL">Nepal</option>
+                                            <option value="NLD">Netherlands</option>
+                                            <option value="ANT">Netherlands Antilles</option>
+                                            <option value="NCL">New Caledonia</option>
+                                            <option value="NZL">New Zealand</option>
+                                            <option value="NIC">Nicaragua</option>
+                                            <option value="NER">Niger</option>
+                                            <option value="NGA">Nigeria</option>
+                                            <option value="NIU">Niue</option>
+                                            <option value="NFK">Norfolk Island</option>
+                                            <option value="MNP">Northern Mariana Islands</option>
+                                            <option value="NOR">Norway</option>
+                                            <option value="OMN">Oman</option>
+                                            <option value="PAK">Pakistan</option>
+                                            <option value="PLW">Palau</option>
+                                            <option value="PSE">Palestinian Territory</option>
+                                            <option value="PAN">Panama</option>
+                                            <option value="PNG">Papua New Guinea</option>
+                                            <option value="PRY">Paraguay</option>
+                                            <option value="PER">Peru</option>
+                                            <option value="PHL">Philippines</option>
+                                            <option value="PCN">Pitcairn</option>
+                                            <option value="POL">Poland</option>
+                                            <option value="PRT">Portugal</option>
+                                            <option value="PRI">Puerto Rico</option>
+                                            <option value="QAT">Qatar</option>
+                                            <option value="REU">R&#233;union</option>
+                                            <option value="ROU">Romania</option>
+                                            <option value="RUS">Russian Federation</option>
+                                            <option value="RWA">Rwanda</option>
+                                            <option value="SHN">Saint Helena</option>
+                                            <option value="KNA">Saint Kitts and Nevis</option>
+                                            <option value="LCA">Saint Lucia</option>
+                                            <option value="SPM">Saint Pierre and Miquelon</option>
+                                            <option value="VCT">Saint Vincent and Grenadines</option>
+                                            <option value="BLM">Saint-Barth&#233;lemy</option>
+                                            <option value="MAF">Saint-Martin (French part)</option>
+                                            <option value="WSM">Samoa</option>
+                                            <option value="SMR">San Marino</option>
+                                            <option value="STP">Sao Tome and Principe</option>
+                                            <option value="SAU">Saudi Arabia</option>
+                                            <option value="SEN">Senegal</option>
+                                            <option value="SRB">Serbia</option>
+                                            <option value="SYC">Seychelles</option>
+                                            <option value="SLE">Sierra Leone</option>
+                                            <option value="SGP">Singapore</option>
+                                            <option value="SVK">Slovakia</option>
+                                            <option value="SVN">Slovenia</option>
+                                            <option value="SLB">Solomon Islands</option>
+                                            <option value="SOM">Somalia</option>
+                                            <option value="ZAF">South Africa</option>
+                                            <option value="SGS">South Georgia and the South Sandwich Islands</option>
+                                            <option value="SSD">South Sudan</option>
+                                            <option value="ESP">Spain</option>
+                                            <option value="LKA">Sri Lanka</option>
+                                            <option value="SDN">Sudan</option>
+                                            <option value="SUR">Suriname</option>
+                                            <option value="SJM">Svalbard and Jan Mayen Islands</option>
+                                            <option value="SWZ">Swaziland</option>
+                                            <option value="SWE">Sweden</option>
+                                            <option value="CHE">Switzerland</option>
+                                            <option value="SYR">Syrian Arab Republic&#160;(Syria)</option>
+                                            <option value="TWN">Taiwan, Republic of China</option>
+                                            <option value="TJK">Tajikistan</option>
+                                            <option value="TZA">Tanzania, United Republic of</option>
+                                            <option value="THA">Thailand</option>
+                                            <option value="TLS">Timor-Leste</option>
+                                            <option value="T">To</option>
+                                            <option value="TKL">Tokelau</option>
+                                            <option value="TON">Tonga</option>
+                                            <option value="TTO">Trinidad and Toba</option>
+                                            <option value="TUN">Tunisia</option>
+                                            <option value="TUR">Turkey</option>
+                                            <option value="TKM">Turkmenistan</option>
+                                            <option value="TCA">Turks and Caicos Islands</option>
+                                            <option value="TUV">Tuvalu</option>
+                                            <option value="UGA">Uganda</option>
+                                            <option value="UKR">Ukraine</option>
+                                            <option value="ARE">United Arab Emirates</option>
+                                            <option value="GBR">United Kingdom</option>
+                                            <option selected="selected" value="{{ manifest.ffcountry }}">United States
+                                                of
+                                                America</option>
+                                            <option value="URY">Uruguay</option>
+                                            <option value="UMI">US Minor Outlying Islands</option>
+                                            <option value="UZB">Uzbekistan</option>
+                                            <option value="VUT">Vanuatu</option>
+                                            <option value="VEN">Venezuela</option>
+                                            <option value="VNM">Viet Nam</option>
+                                            <option value="VIR">Virgin Islands, US</option>
+                                            <option value="WLF">Wallis and Futuna Islands</option>
+                                            <option value="ESH">Western Sahara</option>
+                                            <option value="YEM">Yemen</option>
+                                            <option value="ZMB">Zambia</option>
+                                            <option value="ZWE">Zimbabwe</option>
+                                        </select>
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="ffcountry"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="ffzip">FF Zip</label>
+                                        <input class="form-control text-box single-line" id="ffzip" name="ffzip"
+                                            type="text" value="{{ manifest.ffzip }}" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="ffzip"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="netcost">Net Cost</label>
+                                        <input class="form-control text-box single-line" data-val="true"
+                                            data-val-number="The field netcost must be a number." id="netcost"
+                                            name="netcost" type="text" value="{{ manifest.netcost }}" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="netcost"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="netfreight">Net Freight</label>
+                                        <input class="form-control text-box single-line" data-val="true"
+                                            data-val-number="The field netfreight must be a number." id="netfreight"
+                                            name="netfreight" type="text" value="{{ manifest.netfreight }}" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="netfreight"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="arrivaldate">Arrival Date</label>
+
+                                        <input type="date" name="arrivaldate" id="arrivaldate"
+                                            value="{{ manifest.arrivaldate }}" class="datepicker form-control"
+                                            autocomplete="off" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="arrivaldate"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="departuredate">Departure Date</label>
+
+                                        <input type="date" name="departuredate" id="departuredate"
+                                            value="{{ manifest.departuredate }}" class="datepicker form-control"
+                                            autocomplete="off" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="departuredate"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="dischargeport">Discharge Port</label>
+                                        <select class=" form-control selectpicker" id="dischargeport"
+                                            name="dischargeport">
+                                            <option value="">None</option>
+                                            <option value="KYGEC">GEC - SEA</option>
+                                            <option selected="selected" value="{{ manifest.dischargeport }}">GCM - AIR
+                                            </option>
+                                        </select>
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="dischargeport"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="tod">TOD</label>
+                                        <select class=" form-control selectpicker" id="tod" name="tod">
+                                            <option value="">None</option>
+                                            <option value="CF">COST AND FREIGHT (CF)</option>
+                                            <option value="CI">COST AND INSURANCE (CI)</option>
+                                            <option value="CIF">COST,INSURANCE AND FREIGHT (CIF)</option>
+                                            <option selected="selected" value="{{ manifest.tod }}">COST ONLY (FOB)
+                                            </option>
+                                        </select>
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="tod"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="categoryofgoods">Category of Goods</label>
+                                        <select class=" form-control selectpicker" data-live-search="true"
+                                            data-show-subtext="true" id="categoryofgoods" name="categoryofgoods">
+                                            <option value="">None</option>
+                                            <option selected="selected" value="{{ manifest.categoryofgoods }}">Regular
+                                            </option>
+                                            <option value="2">Articles for urgent medical purposes</option>
+                                            <option value="3">Goods for disaster relief</option>
+                                            <option value="4">Engines or spare parts for urgent repairs serving a public
+                                                purpose
+                                            </option>
+                                            <option value="5">Perishable goods, which are likely to decay</option>
+                                            <option value="6">Livestock
+                                            </option>
+                                            <option value="7">Pets
+                                            </option>
+                                        </select>
+                                        <span class="field-validation-valid text-danger"
+                                            data-valmsg-for="categoryofgoods" data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="regime">Regime</label>
+                                        <select class=" form-control selectpicker" data-live-search="true"
+                                            data-show-subtext="true" id="regime" name="regime">
+                                            <option selected="selected" value="{{ manifest.regime }}">Full Definitive
+                                                Importation</option>
+                                            <option value="CD4">Courier Importation</option>
+                                        </select>
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="regime"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="" for="contents">Contents</label>
+                                        <input class="form-control text-box single-line" id="contents" name="contents"
+                                            type="text" value="{{ manifest.contents }}" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="contents"
+                                            data-valmsg-replace="true"></span>
+                                            
+                                    </div>
+                                   
+                                </div>
+                                <div class="clearfix"></div>
+                               
+                            </div>
+
+                            <!-- # CSV UPLOAD -->
+
+                        </form>
+                    </div>
+
+                    <div class="tab-pane" id="packages" role="tabpanel">
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Consignee</th>
+                                    <th>Description Code</th>
+                                    <th>TIN Number</th>
+                                    <th>Values String List</th>
+                                    <th>Traffic Code</th>
+                                    <th>MAWB</th>
+                                    <th>Weight (lbs)</th>
+                                    <th>Freight Price</th>
+                                    <th>Insurance Price</th>
+                                    <th>Quantity</th>
+                                    <th>Quantity Unit</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for csv_entry in csv_data %}
+                                <tr>
+                                    <td>{{ csv_entry.consignee }}</td>
+                                    <td>{{ csv_entry.description_code }}</td>
+                                    <td>{{ csv_entry.tin_number }}</td>
+                                    <td>{{ csv_entry.values_str_list }}</td>
+                                    <td>{{ csv_entry.traffic_code }}</td>
+                                    <td>{{ csv_entry.mawb }}</td>
+                                    <td>{{ csv_entry.weight_lbs }}</td>
+                                    <td>{{ csv_entry.freight_price }}</td>
+                                    <td>{{ csv_entry.insurance_price }}</td>
+                                    <td>{{ csv_entry.quantity }}</td>
+                                    <td>{{ csv_entry.qty_unit }}</td>
+                                    <td>
+                                        <button type="button" class="action-btn btn btn-outline-primary rounded-circle ml-2" title="Edit CSV"
+                                            data-toggle="modal" data-target="#editCsvModal{{ csv_entry.id }}">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <!-- Form for the delete action -->
+                                        <form method="post"
+                                            action="{{ url_for('delete_csv', manifest_id=manifest.id, csv_id=csv_entry.id) }}"
+                                            style="display: inline-block;">
+                                            <input type="hidden" name="_method" value="delete">
+                                            <button type="submit" class="action-btn btn btn-outline-danger rounded-circle ml-2" title="Delete CSV"
+                                                onclick="return confirm('Are you sure you want to delete this CSV entry?');">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </form>
+                                        <!-- Edit CSV Modal -->
+                                        <div class="modal fade" id="editCsvModal{{ csv_entry.id }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="editCsvModalLabel{{ csv_entry.id }}"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title"
+                                                            id="editCsvModalLabel{{ csv_entry.id }}">Edit CSV Entry</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <!-- Your edit form goes here -->
+                                                        <form method="post"
+                                                            action="{{ url_for('edit_csv', manifest_id=manifest.id, csv_id=csv_entry.id) }}">
+                                                            <div class="form-group">
+                                                                <label for="consignee">Consignee:</label>
+                                                                <input type="text" class="form-control" id="consignee"
+                                                                    name="consignee" value="{{ csv_entry.consignee }}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="description_code">Description Code:</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="description_code" name="description_code"
+                                                                    value="{{ csv_entry.description_code }}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="tin_number">TIN Number:</label>
+                                                                <input type="text" class="form-control" id="tin_number"
+                                                                    name="tin_number"
+                                                                    value="{{ csv_entry.tin_number }}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="values_str_list">Values String List:</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="values_str_list" name="values_str_list"
+                                                                    value="{{ csv_entry.values_str_list }}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="traffic_code">Traffic Code:</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="traffic_code" name="traffic_code"
+                                                                    value="{{ csv_entry.traffic_code }}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="mawb">MAWB:</label>
+                                                                <input type="text" class="form-control" id="mawb"
+                                                                    name="mawb" value="{{ csv_entry.mawb }}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="weight_lbs">Weight (lbs):</label>
+                                                                <input type="text" class="form-control" id="weight_lbs"
+                                                                    name="weight_lbs"
+                                                                    value="{{ csv_entry.weight_lbs }}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="freight_price">Freight Price:</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="freight_price" name="freight_price"
+                                                                    value="{{ csv_entry.freight_price }}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="insurance_price">Insurance Price:</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="insurance_price" name="insurance_price"
+                                                                    value="{{ csv_entry.insurance_price }}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="quantity">Quantity:</label>
+                                                                <input type="text" class="form-control" id="quantity"
+                                                                    name="quantity" value="{{ csv_entry.quantity }}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="qty_unit">Quantity Unit:</label>
+                                                                <input type="text" class="form-control" id="qty_unit"
+                                                                    name="qty_unit" value="{{ csv_entry.qty_unit }}">
+                                                            </div>
+
+                                                            <button type="submit" class="btn btn-primary">Save
+                                                                Changes</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+    </div>
+
+    <!-- footer.html -->
+
+    {% endblock %}

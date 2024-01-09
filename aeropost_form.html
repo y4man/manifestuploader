@@ -1,0 +1,783 @@
+{% extends "base.html" %}
+{% block title %}Add New Manifest - {{ super() }}{% endblock %}
+{% block main_heading %}Add New Manifest{% endblock %}
+
+{% block content %}
+<form class="container-fluid bg-light my-5" method="post" action="/manifest" enctype="multipart/form-data">
+
+    <input name="__RequestVerificationToken" type="hidden" value="" />
+    <input type="hidden" id="ret" name="ret" value="" />
+
+    <div class="form-group ">
+        <label for="transportation">Select Transportation:</label>
+        <div class="form-check form-check-inline" style="background-color: #e1f7d5; padding: 12px;">
+            <input class="form-check-input" type="radio" name="transportation" id="air" value="AIR" checked
+                style="width: 20px; height: 20px;">
+            <label class="form-check-label" for="air">
+                Air
+            </label>
+        </div>
+        <div class="form-check form-check-inline" style="background-color: #d5e8f7; padding: 12px;">
+            <input class="form-check-input" type="radio" name="transportation" id="sea" value="SEA"
+                style="width: 20px; height: 20px;">
+            <label class="form-check-label" for="sea">
+                Sea
+            </label>
+        </div>
+    </div>
+
+    <div>
+        <!-- CSV UPLOAD -->
+        
+
+        <!-- Hidden Inputs -->
+        <input type="hidden" id="id" name="id">
+        <input type="hidden" id="mot" name="mot" value="AIR">
+        <input type="hidden" id="createdate" name="createdate">
+    </div>
+
+    <div class="form-row mt_10 ">
+
+        <div class="col-md-4 form-group">
+
+            <label class="" for="doe">Date of Entry</label>
+            <input type="date" name="doe" id="doe" value="" class="datepicker form-control" autocomplete="off" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="doe" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group airlines">
+            <label class="" for="vesselcode">Airline</label>
+            <select class=" form-control selectpicker" data-live-search="true" data-show-subtext="true" id="vesselcode"
+                name="vesselcode">
+                <option value="AA">American Airlines</option>
+                <option value="BA">British Airways</option>
+                <option value="CA">Canadian Airways</option>
+                <option value="KX">Cayman Airways</option>
+                <option selected="selected" value="II">Ibc Airways</option>
+                <option value="B6">Jetblue Airways</option>
+                <option value="UA">United Airlines</option>
+            </select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="vesselcode"
+                data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group sea">
+            <label class="" for="vesselcode">Vessel Code</label>
+            <select class=" form-control selectpicker" data-live-search="true" data-show-subtext="true" id="vesselcode"
+                name="vesselcode">
+                <option value="AL">AL - Alaed</option>
+                <option value="AP">AP - Alex P</option>
+                <option value="BZ">BZ - Baltimar Zephyr</option>
+                <option value="BBC BALTIC">BBC BALTIC - Bbc Baltic</option>
+                <option value="BBAY">BBAY - Bloody Bay</option>
+                <option value="CL">CL - Caribe Legend</option>
+                <option value="CM">CM - Caribe Mariner</option>
+                <option value="CN">CN - Caribe Navigator</option>
+                <option value="CR">CR - Corona</option>
+                <option value="DP">DP - Delphinus</option>
+                <option value="EP">EP - Expansa</option>
+                <option value="JOFER">JOFER - Jose Fernando</option>
+                <option value="THKB">THKB - Katharina B</option>
+                <option value="M/V DYNA">M/V DYNA - M/V Dyna Bulk</option>
+                <option value="MICHAEL A">MICHAEL A - Michael A</option>
+                <option value="THPS">THPS - Point Of Sand</option>
+                <option value="SW">SW - Sandwig</option>
+                <option value="SS">SS - Seaboard Sun</option>
+                <option value="TJ">TJ - Tropic Jade</option>
+                <option value="TL">TL - Tropic Lure</option>
+                <option value="TM">TM - Tropic Mist</option>
+                <option value="TP">TP - Tropic Palm</option>
+                <option value="THTU">THTU - Tropical Unity</option>
+                <option value="VAN">VAN - Vanquish</option>
+                <option value="VT">VT - Vantage</option>
+                <option value="VISTIQUE">VISTIQUE - Vistique</option>
+                <option value="WB">WB - Wasaborg</option>
+                <option value="Emilia">Emilia - EMILIA</option>
+            </select>
+
+            <span class="field-validation-valid text-danger" data-valmsg-for="vesselcode"
+                data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group sea">
+            <label class="" for="voyogeno">Voyoge No</label>
+            <input class="form-control text-box single-line" id="voyogeno" name="voyogeno" type="text" value="">
+            <span class="field-validation-valid text-danger" data-valmsg-for="voyogeno"
+                data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group airlines">
+            <label class="" for="voyogeno">Flight Number</label>
+            <select class=" form-control selectpicker" data-live-search="true" data-show-subtext="true" id="voyogeno"
+                name="voyogeno">
+                <option value="1007">AA 1007 - MIA -&gt; GCM</option>
+                <option value="103">KX 103 - MIA -&gt; GCM</option>
+                <option value="105">KX 105 - MIA -&gt; GCM</option>
+                <option value="107">KX 107 - MIA -&gt; GCM</option>
+                <option value="109">KX 109 - MIA -&gt; GCM</option>
+                <option value="123">KX 123 - MIA -&gt; GCM</option>
+                <option value="1300">AA 1300 - MIA -&gt; GCM</option>
+                <option value="1494">UA 1494 - HOU -&gt; GCM</option>
+                <option value="1552">AA 1552 - MIA -&gt; GCM</option>
+                <option value="1737">AA 1737 - MIA -&gt; GCM</option>
+                <option value="1962">AA 1962 - CLT -&gt; GCM</option>
+                <option value="201">KX 201 - TPA -&gt; GCM</option>
+                <option value="203">KX 203 - TPA -&gt; GCM</option>
+                <option value="205">KX 205 - TPA -&gt; GCM</option>
+                <option value="2105">KX 2105 - MIA -&gt; GCM</option>
+                <option selected="selected" value="211">IB 211 - MIA -&gt; GCM</option>
+                <option value="253">BA 253 - LHR -&gt; GCM</option>
+                <option value="2909">KX 2909 - MIA -&gt; GCM</option>
+                <option value="3105">KX 3105 - MIA -&gt; GCM</option>
+                <option value="355">AA 355 - DFW -&gt; GCM</option>
+                <option value="378">AA 378 - MIA -&gt; GCM</option>
+                <option value="490">CA 490 - PTY -&gt; GCM</option>
+                <option value="601">KX 601 - KIN -&gt; GCM</option>
+                <option value="607">KX 607 - KIN -&gt; GCM</option>
+                <option value="609">KX 609 - KIN -&gt; GCM</option>
+                <option value="621">KX 621 - KIN -&gt; GCM</option>
+                <option value="63">AA 63 - MIA -&gt; GCM</option>
+                <option value="717">AA 717 - MIA -&gt; GCM</option>
+                <option value="725">AA 725 - MIA -&gt; GCM</option>
+                <option value="725">IB 725 - MIA -&gt; GCM</option>
+                <option value="765">B6 765 - JFK -&gt; GCM</option>
+                <option value="806">AA 806 - CHI -&gt; GCM</option>
+                <option value="819">AA 819 - MIA -&gt; GCM</option>
+                <option value="821">AA 821 - MIA -&gt; GCM</option>
+                <option value="883">KX 883 - LCE -&gt; GCM</option>
+                <option value="885">KX 885 - RTB -&gt; GCM</option>
+                <option value="909">KX 909 - MIA -&gt; GCM</option>
+                <option value="956">AA 956 - MIA -&gt; GCM</option>
+            </select>
+
+            <span class="field-validation-valid text-danger" data-valmsg-for="voyogeno"
+                data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label class="" for="carrier">Carrier</label>
+            <select class=" form-control selectpicker" data-live-search="true" data-show-subtext="true" id="carrier"
+                name="carrier">
+                <option value="">None</option>
+                <option value="AA">AA - American Airlines</option>
+                <option value="AC">AC - Air Canada</option>
+                <option value="BA">BA - British Airlines</option>
+                <option value="BS">BS - Bodden Shipping Agency Ltd</option>
+                <option value="CA">CA - Caribbean Aggregate</option>
+                <option value="CF">CF - Cayman Freight Shipping Servic</option>
+                <option value="CI">CI - Cayman Islands Customs Agency</option>
+                <option value="DL">DL - Delta Airlines</option>
+                <option value="EL">EL - DHL International</option>
+                <option value="ES">ES - Esso Standard Oil</option>
+                <option value="EW">EW - Easyway Express</option>
+                <option value="FX">FX - Federal Express</option>
+                <option value="HG">HG - Home Gas</option>
+                <option value="HS">HS - Hyde Shipping</option>
+                <option selected="selected" value="II">II - IBC Airways</option>
+                <option value="KX">KX - Cayman Airways</option>
+                <option value="MB">MB - Miracle Brokers</option>
+                <option value="NC">NC - NCI Express</option>
+                <option value="OT">OT - Other</option>
+                <option value="RU">RU - RUBIS Fuel and Oil</option>
+                <option value="SB">SB - Seaboard Marine</option>
+                <option value="SH">SH - Shelby&#39;s Agency and Stevedorin</option>
+                <option value="SO">SO - SOL Petroleum</option>
+                <option value="SP">SP - Sprint Express Services</option>
+                <option value="TS">TS - Thompson/Tropical Shipping Co </option>
+                <option value="UP">UP - United Parcel Service (UPS)</option>
+                <option value="WI">WI - West Indian Shipping Ltd</option>
+            </select>
+
+            <span class="field-validation-valid text-danger" data-valmsg-for="carrier"
+                data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label class="" for="carriername">Shipping Agent/Carrier Name</label>
+            <input class="form-control text-box single-line" id="carriername" name="carriername" type="text" value="" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="carriername"
+                data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group airlines">
+            <label class="" for="shippingport">Shipping Port</label>
+            <select class=" form-control selectpicker" data-live-search="true" data-show-subtext="true"
+                id="shippingport" name="shippingport">
+                <option value="">None</option>
+                <option value="BESML">Sint-Martens-Latem, VOV</option>
+                <option value="COPCC">Puerto Rico, CAQ</option>
+                <option value="GBLHR">Heathrow Apt/London, HIL</option>
+                <option value="GBHEQ">Heaton, LAN</option>
+                <option value="GBWOB">Suttonheath</option>
+                <option value="GBKKH">Kirkheaton, NFK</option>
+                <option value="GBMHT">Martlesham Heath, SFK</option>
+                <option value="GBNNR">Normanton le Heath, LEC</option>
+                <option value="PKPAJ">Para Chinar</option>
+                <option value="JPCHI">China, 46</option>
+                <option value="JPCNS">Chinase, 46</option>
+                <option value="JPHIC">Hitachinaka, 8</option>
+                <option value="JPNIC">Nichinan, 45</option>
+                <option value="KYCYB">Cayman Brac</option>
+                <option value="KYGEC">Georgetown, Grand Cayman</option>
+                <option value="JMKIN">Kingston</option>
+                <option value="USPEF">Port Everglades, FL</option>
+                <option value="USNYC">New York, NY</option>
+                <option value="USMNH">Manhattan/New York, NY</option>
+                <option selected="selected" value="USMIA">Miami, FL</option>
+                <option value="USCZO">Chistochina, AK</option>
+                <option value="USFLU">Flushing Apt/New York, NY</option>
+                <option value="USBOY">Brooklyn/New York, NY</option>
+                <option value="BOPUR">Puerto Rico, N</option>
+                <option value="USPBI">West Palm Beach, FL</option>
+                <option value="GBSJJ">Small Heath, BIR</option>
+                <option value="USJFK">John F. Kennedy Apt/New York, NY</option>
+                <option value="USLGA">La Guardia Apt/New York, NY</option>
+            </select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="shippingport"
+                data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group sea">
+            <label class="" for="shippingport">Shipping Port</label>
+            <select class=" form-control selectpicker" data-live-search="true" data-show-subtext="true"
+                id="shippingport" name="shippingport">
+                <option value="">None</option>
+                <option value="BESML">Sint-Martens-Latem, VOV</option>
+                <option value="COPCC">Puerto Rico, CAQ</option>
+                <option value="GBLHR">Heathrow Apt/London, HIL</option>
+                <option value="GBHEQ">Heaton, LAN</option>
+                <option value="GBWOB">Suttonheath</option>
+                <option value="GBKKH">Kirkheaton, NFK</option>
+                <option value="GBMHT">Martlesham Heath, SFK</option>
+                <option value="GBNNR">Normanton le Heath, LEC</option>
+                <option value="PKPAJ">Para Chinar</option>
+                <option value="JPCHI">China, 46</option>
+                <option value="JPCNS">Chinase, 46</option>
+                <option value="JPHIC">Hitachinaka, 8</option>
+                <option value="JPNIC">Nichinan, 45</option>
+                <option value="KYCYB">Cayman Brac</option>
+                <option value="KYGEC">Georgetown, Grand Cayman</option>
+                <option value="JMKIN">Kingston</option>
+                <option value="USPEF">Port Everglades, FL</option>
+                <option value="USNYC">New York, NY</option>
+                <option value="USMNH">Manhattan/New York, NY</option>
+                <option value="USMIA">Miami, FL</option>
+                <option value="USCZO">Chistochina, AK</option>
+                <option value="USFLU">Flushing Apt/New York, NY</option>
+                <option value="USBOY">Brooklyn/New York, NY</option>
+                <option value="BOPUR">Puerto Rico, N</option>
+                <option value="USPBI">West Palm Beach, FL</option>
+                <option value="GBSJJ">Small Heath, BIR</option>
+                <option value="USJFK">John F. Kennedy Apt/New York, NY</option>
+                <option value="USLGA">La Guardia Apt/New York, NY</option>
+            </select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="shippingport"
+                data-valmsg-replace="true"></span>
+        </div>
+
+
+        <div class="col-md-4 form-group">
+            <label class="" for="billnumber">Bill Number</label>
+            <input class="form-control text-box single-line" id="billnumber" name="billnumber" type="text" value="" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="billnumber"
+                data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label class="" for="pkgcount">Package Count</label>
+            <input class="form-control text-box single-line" data-val="true"
+                data-val-number="The field pkgcount must be a number." id="pkgcount" name="pkgcount" type="number"
+                value="" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="pkgcount"
+                data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label class="" for="pkgtype">Package Type</label>
+            <select class=" form-control selectpicker" data-live-search="true" data-show-subtext="true" id="pkgtype"
+                name="pkgtype">
+                <option value="">None</option>
+                <option selected="selected" value="BG">Bag (BG)</option>
+                <option value="BL">Bale, compressed (BL)</option>
+                <option value="BR">Bar (BR)</option>
+                <option value="BA">Barrel (BA)</option>
+                <option value="BK">Basket (BK)</option>
+                <option value="BD">Board (BD)</option>
+                <option value="BX">Box (BX)</option>
+                <option value="VL">Bulk, liquid (VL)</option>
+                <option value="BE">Bundle (BE)</option>
+                <option value="CG">Cage (CG)</option>
+                <option value="CT">Carton (CT)</option>
+                <option value="CS">Case (CS)</option>
+                <option value="CJ">Coffin (CJ)</option>
+                <option value="CN">Container, not otherwise specified as transport equipment (CN)
+                </option>
+                <option value="CR">Crate (CR)</option>
+                <option value="MC">Crate, milk (MC)</option>
+                <option value="CY">Cylinder (CY)</option>
+                <option value="DR">Drum (DR)</option>
+                <option value="WA">Intermediate bulk container (WA)</option>
+                <option value="WF">Intermediate bulk container, metal (WF)</option>
+                <option value="ZX">Intermediate bulk container, plywood (ZX)</option>
+                <option value="KG">Keg (KG)</option>
+                <option value="PK">Package (PK)</option>
+                <option value="PL">Pail (PL)</option>
+                <option value="PX">Pallet (PX)</option>
+                <option value="PC">Parcel (PC)</option>
+                <option value="RF">Reefer (RF)</option>
+                <option value="RL">Reel (RL)</option>
+                <option value="RO">Roll (RO)</option>
+                <option value="ST">Sheet (ST)</option>
+                <option value="SI">Skid (SI)</option>
+                <option value="SU">Suitcase (SU)</option>
+                <option value="TY">Tank, cylindrical (TY)</option>
+                <option value="TK">Tank, rectangular (TK)</option>
+                <option value="TA">Trailer, for Boats (TA)</option>
+                <option value="TU">Tube (TU)</option>
+                <option value="NE">Unpacked or unpackaged (NE)</option>
+                <option value="VN">Vehicle (VN)</option>
+            </select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="pkgtype"
+                data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label class="" for="grosswt">Gross Weight</label>
+            <input class="form-control text-box single-line" data-val="true"
+                data-val-number="The field grosswt must be a number." id="grosswt" name="grosswt" type="text" value=""
+                required />
+            <span class="field-validation-valid text-danger" data-valmsg-for="grosswt"
+                data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label class="" for="grosswtunit">Gross Weight Unit</label>
+            <select autocomplete="off" class=" form-control selectpicker" id="grosswtunit" name="grosswtunit">
+                <option selected="selected" value="LB">LB</option>
+                <option value="KG">KG</option>
+
+            </select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="grosswtunit"
+                data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label class="" for="grossvol">Gross Volume</label>
+            <input class="form-control text-box single-line" data-val="true"
+                data-val-number="The field grossvol must be a number." id="grossvol" name="grossvol" type="text"
+                value="" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="grossvol"
+                data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label class="" for="grossvolunit">Gross Volume Unit</label>
+            <select autocomplete="off" class=" form-control selectpicker" id="grossvolunit" name="grossvolunit">
+                <option selected="selected" value="CF">CF</option>
+                <option value="M3">M3</option>
+            </select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="grossvolunit"
+                data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label class="" for="ffname">FF Name</label>
+            <input class="form-control text-box single-line" id="ffname" name="ffname" type="text"
+                value="AEROPOST INTERNATIONAL" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="ffname" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label class="" for="ffaddress">FF Address</label>
+            <input class="form-control text-box single-line" id="ffaddress" name="ffaddress" type="text"
+                value="AEROPOST" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="ffaddress"
+                data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label class="" for="ffcity">FF City</label>
+            <input class="form-control text-box single-line" id="ffcity" name="ffcity" type="text" value="" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="ffcity" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label class="" for="ffstate">FF State</label>
+            <input class="form-control text-box single-line" id="ffstate" name="ffstate" type="text" value="FL" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="ffstate"
+                data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label class="" for="ffcountry">FF Country</label>
+            <select class=" form-control selectpicker" data-live-search="true" data-show-subtext="true" id="ffcountry"
+                name="ffcountry">
+                <option value="">Country</option>
+                <option value="AFG">Afghanistan</option>
+                <option value="ALA">Aland Islands</option>
+                <option value="ALB">Albania</option>
+                <option value="DZA">Algeria</option>
+                <option value="ASM">American Samoa</option>
+                <option value="AND">Andorra</option>
+                <option value="AIA">Anguilla</option>
+                <option value="A">Anla</option>
+                <option value="ATA">Antarctica</option>
+                <option value="ATG">Antigua and Barbuda</option>
+                <option value="ARG">Argentina</option>
+                <option value="ARM">Armenia</option>
+                <option value="ABW">Aruba</option>
+                <option value="AUS">Australia</option>
+                <option value="AUT">Austria</option>
+                <option value="AZE">Azerbaijan</option>
+                <option value="BHS">Bahamas</option>
+                <option value="BHR">Bahrain</option>
+                <option value="BGD">Bangladesh</option>
+                <option value="BRB">Barbados</option>
+                <option value="BLR">Belarus</option>
+                <option value="BEL">Belgium</option>
+                <option value="BLZ">Belize</option>
+                <option value="BEN">Benin</option>
+                <option value="BMU">Bermuda</option>
+                <option value="BTN">Bhutan</option>
+                <option value="BOL">Bolivia</option>
+                <option value="BIH">Bosnia and Herzevina</option>
+                <option value="BWA">Botswana</option>
+                <option value="BVT">Bouvet Island</option>
+                <option value="BRA">Brazil</option>
+                <option value="IOT">British Indian Ocean Territory</option>
+                <option value="VGB">British Virgin Islands</option>
+                <option value="BRN">Brunei Darussalam</option>
+                <option value="BGR">Bulgaria</option>
+                <option value="BFA">Burkina Faso</option>
+                <option value="BDI">Burundi</option>
+                <option value="KHM">Cambodia</option>
+                <option value="CMR">Cameroon</option>
+                <option value="CAN">Canada</option>
+                <option value="CPV">Cape Verde</option>
+                <option value="CYM">Cayman Islands</option>
+                <option value="CAF">Central African Republic</option>
+                <option value="TCD">Chad</option>
+                <option value="CHL">Chile</option>
+                <option value="CHN">China</option>
+                <option value="CXR">Christmas Island</option>
+                <option value="CCK">Cocos (Keeling) Islands</option>
+                <option value="COL">Colombia</option>
+                <option value="COM">Comoros</option>
+                <option value="COG">Con&#160;(Brazzaville)</option>
+                <option value="COD">Con, (Kinshasa)</option>
+                <option value="COK">Cook Islands</option>
+                <option value="CRI">Costa Rica</option>
+                <option value="CIV">C&#244;te dIvoire</option>
+                <option value="HRV">Croatia</option>
+                <option value="CUB">Cuba</option>
+                <option value="CYP">Cyprus</option>
+                <option value="CZE">Czech Republic</option>
+                <option value="DNK">Denmark</option>
+                <option value="DJI">Djibouti</option>
+                <option value="DMA">Dominica</option>
+                <option value="DOM">Dominican Republic</option>
+                <option value="ECU">Ecuador</option>
+                <option value="EGY">Egypt</option>
+                <option value="SLV">El Salvador</option>
+                <option value="GNQ">Equatorial Guinea</option>
+                <option value="ERI">Eritrea</option>
+                <option value="EST">Estonia</option>
+                <option value="ETH">Ethiopia</option>
+                <option value="FLK">Falkland Islands (Malvinas)</option>
+                <option value="FRO">Faroe Islands</option>
+                <option value="FJI">Fiji</option>
+                <option value="FIN">Finland</option>
+                <option value="FRA">France</option>
+                <option value="GUF">French Guiana</option>
+                <option value="PYF">French Polynesia</option>
+                <option value="ATF">French Southern Territories</option>
+                <option value="GAB">Gabon</option>
+                <option value="GMB">Gambia</option>
+                <option value="GEO">Georgia</option>
+                <option value="DEU">Germany</option>
+                <option value="GHA">Ghana</option>
+                <option value="GIB">Gibraltar</option>
+                <option value="GRC">Greece</option>
+                <option value="GRL">Greenland</option>
+                <option value="GRD">Grenada</option>
+                <option value="GLP">Guadeloupe</option>
+                <option value="GUM">Guam</option>
+                <option value="GTM">Guatemala</option>
+                <option value="GGY">Guernsey</option>
+                <option value="GIN">Guinea</option>
+                <option value="GNB">Guinea-Bissau</option>
+                <option value="GUY">Guyana</option>
+                <option value="HTI">Haiti</option>
+                <option value="HMD">Heard and Mcdonald Islands</option>
+                <option value="VAT">Holy See&#160;(Vatican City State)</option>
+                <option value="HND">Honduras</option>
+                <option value="HKG">Hong Kong, SAR China</option>
+                <option value="HUN">Hungary</option>
+                <option value="ISL">Iceland</option>
+                <option value="IND">India</option>
+                <option value="IDN">Indonesia</option>
+                <option value="IRN">Iran, Islamic Republic of</option>
+                <option value="IRQ">Iraq</option>
+                <option value="IRL">Ireland</option>
+                <option value="IMN">Isle of Man</option>
+                <option value="ISR">Israel</option>
+                <option value="ITA">Italy</option>
+                <option value="JAM">Jamaica</option>
+                <option value="JPN">Japan</option>
+                <option value="JEY">Jersey</option>
+                <option value="JOR">Jordan</option>
+                <option value="KAZ">Kazakhstan</option>
+                <option value="KEN">Kenya</option>
+                <option value="KIR">Kiribati</option>
+                <option value="PRK">Korea&#160;(North)</option>
+                <option value="KOR">Korea&#160;(South)</option>
+                <option value="KWT">Kuwait</option>
+                <option value="KGZ">Kyrgyzstan</option>
+                <option value="LAO">Lao PDR</option>
+                <option value="LVA">Latvia</option>
+                <option value="LBN">Lebanon</option>
+                <option value="LSO">Lesotho</option>
+                <option value="LBR">Liberia</option>
+                <option value="LBY">Libya</option>
+                <option value="LIE">Liechtenstein</option>
+                <option value="LTU">Lithuania</option>
+                <option value="LUX">Luxembourg</option>
+                <option value="MAC">Macao, SAR China</option>
+                <option value="MKD">Macedonia, Republic of</option>
+                <option value="MDG">Madagascar</option>
+                <option value="MWI">Malawi</option>
+                <option value="MYS">Malaysia</option>
+                <option value="MDV">Maldives</option>
+                <option value="MLI">Mali</option>
+                <option value="MLT">Malta</option>
+                <option value="MHL">Marshall Islands</option>
+                <option value="MTQ">Martinique</option>
+                <option value="MRT">Mauritania</option>
+                <option value="MUS">Mauritius</option>
+                <option value="MYT">Mayotte</option>
+                <option value="MEX">Mexico</option>
+                <option value="FSM">Micronesia, Federated States of</option>
+                <option value="MDA">Moldova</option>
+                <option value="MCO">Monaco</option>
+                <option value="MNG">Monlia</option>
+                <option value="MNE">Montenegro</option>
+                <option value="MSR">Montserrat</option>
+                <option value="MAR">Morocco</option>
+                <option value="MOZ">Mozambique</option>
+                <option value="MMR">Myanmar</option>
+                <option value="NAM">Namibia</option>
+                <option value="NRU">Nauru</option>
+                <option value="NPL">Nepal</option>
+                <option value="NLD">Netherlands</option>
+                <option value="ANT">Netherlands Antilles</option>
+                <option value="NCL">New Caledonia</option>
+                <option value="NZL">New Zealand</option>
+                <option value="NIC">Nicaragua</option>
+                <option value="NER">Niger</option>
+                <option value="NGA">Nigeria</option>
+                <option value="NIU">Niue</option>
+                <option value="NFK">Norfolk Island</option>
+                <option value="MNP">Northern Mariana Islands</option>
+                <option value="NOR">Norway</option>
+                <option value="OMN">Oman</option>
+                <option value="PAK">Pakistan</option>
+                <option value="PLW">Palau</option>
+                <option value="PSE">Palestinian Territory</option>
+                <option value="PAN">Panama</option>
+                <option value="PNG">Papua New Guinea</option>
+                <option value="PRY">Paraguay</option>
+                <option value="PER">Peru</option>
+                <option value="PHL">Philippines</option>
+                <option value="PCN">Pitcairn</option>
+                <option value="POL">Poland</option>
+                <option value="PRT">Portugal</option>
+                <option value="PRI">Puerto Rico</option>
+                <option value="QAT">Qatar</option>
+                <option value="REU">R&#233;union</option>
+                <option value="ROU">Romania</option>
+                <option value="RUS">Russian Federation</option>
+                <option value="RWA">Rwanda</option>
+                <option value="SHN">Saint Helena</option>
+                <option value="KNA">Saint Kitts and Nevis</option>
+                <option value="LCA">Saint Lucia</option>
+                <option value="SPM">Saint Pierre and Miquelon</option>
+                <option value="VCT">Saint Vincent and Grenadines</option>
+                <option value="BLM">Saint-Barth&#233;lemy</option>
+                <option value="MAF">Saint-Martin (French part)</option>
+                <option value="WSM">Samoa</option>
+                <option value="SMR">San Marino</option>
+                <option value="STP">Sao Tome and Principe</option>
+                <option value="SAU">Saudi Arabia</option>
+                <option value="SEN">Senegal</option>
+                <option value="SRB">Serbia</option>
+                <option value="SYC">Seychelles</option>
+                <option value="SLE">Sierra Leone</option>
+                <option value="SGP">Singapore</option>
+                <option value="SVK">Slovakia</option>
+                <option value="SVN">Slovenia</option>
+                <option value="SLB">Solomon Islands</option>
+                <option value="SOM">Somalia</option>
+                <option value="ZAF">South Africa</option>
+                <option value="SGS">South Georgia and the South Sandwich Islands</option>
+                <option value="SSD">South Sudan</option>
+                <option value="ESP">Spain</option>
+                <option value="LKA">Sri Lanka</option>
+                <option value="SDN">Sudan</option>
+                <option value="SUR">Suriname</option>
+                <option value="SJM">Svalbard and Jan Mayen Islands</option>
+                <option value="SWZ">Swaziland</option>
+                <option value="SWE">Sweden</option>
+                <option value="CHE">Switzerland</option>
+                <option value="SYR">Syrian Arab Republic&#160;(Syria)</option>
+                <option value="TWN">Taiwan, Republic of China</option>
+                <option value="TJK">Tajikistan</option>
+                <option value="TZA">Tanzania, United Republic of</option>
+                <option value="THA">Thailand</option>
+                <option value="TLS">Timor-Leste</option>
+                <option value="T">To</option>
+                <option value="TKL">Tokelau</option>
+                <option value="TON">Tonga</option>
+                <option value="TTO">Trinidad and Toba</option>
+                <option value="TUN">Tunisia</option>
+                <option value="TUR">Turkey</option>
+                <option value="TKM">Turkmenistan</option>
+                <option value="TCA">Turks and Caicos Islands</option>
+                <option value="TUV">Tuvalu</option>
+                <option value="UGA">Uganda</option>
+                <option value="UKR">Ukraine</option>
+                <option value="ARE">United Arab Emirates</option>
+                <option value="GBR">United Kingdom</option>
+                <option selected="selected" value="USA">United States of America</option>
+                <option value="URY">Uruguay</option>
+                <option value="UMI">US Minor Outlying Islands</option>
+                <option value="UZB">Uzbekistan</option>
+                <option value="VUT">Vanuatu</option>
+                <option value="VEN">Venezuela</option>
+                <option value="VNM">Viet Nam</option>
+                <option value="VIR">Virgin Islands, US</option>
+                <option value="WLF">Wallis and Futuna Islands</option>
+                <option value="ESH">Western Sahara</option>
+                <option value="YEM">Yemen</option>
+                <option value="ZMB">Zambia</option>
+                <option value="ZWE">Zimbabwe</option>
+            </select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="ffcountry"
+                data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label class="" for="ffzip">FF Zip</label>
+            <input class="form-control text-box single-line" id="ffzip" name="ffzip" type="text" value="" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="ffzip" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label class="" for="netcost">Net Cost</label>
+            <input class="form-control text-box single-line" data-val="true"
+                data-val-number="The field netcost must be a number." id="netcost" name="netcost" type="text" value=""
+                required />
+            <span class="field-validation-valid text-danger" data-valmsg-for="netcost"
+                data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label class="" for="netfreight">Net Freight</label>
+            <input class="form-control text-box single-line" data-val="true"
+                data-val-number="The field netfreight must be a number." id="netfreight" name="netfreight" type="text"
+                value="" required />
+            <span class="field-validation-valid text-danger" data-valmsg-for="netfreight"
+                data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label class="" for="arrivaldate">Arrival Date</label>
+
+            <input type="date" name="arrivaldate" id="arrivaldate" value="" class="datepicker form-control"
+                autocomplete="off" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="arrivaldate"
+                data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label class="" for="departuredate">Departure Date</label>
+
+            <input type="date" name="departuredate" id="departuredate" value="" class="datepicker form-control"
+                autocomplete="off" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="departuredate"
+                data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label class="" for="dischargeport">Discharge Port</label>
+            <select class=" form-control selectpicker" id="dischargeport" name="dischargeport">
+                <option value="">None</option>
+                <option value="KYGEC">GEC - SEA</option>
+                <option selected="selected" value="KYGCM">GCM - AIR</option>
+            </select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="dischargeport"
+                data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label class="" for="tod">TOD</label>
+            <select class=" form-control selectpicker" id="tod" name="tod">
+                <option value="">None</option>
+                <option value="CF">COST AND FREIGHT (CF)</option>
+                <option value="CI">COST AND INSURANCE (CI)</option>
+                <option value="CIF">COST,INSURANCE AND FREIGHT (CIF)</option>
+                <option selected="selected" value="FOB">COST ONLY (FOB)</option>
+            </select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="tod" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label class="" for="categoryofgoods">Category of Goods</label>
+            <select class=" form-control selectpicker" data-live-search="true" data-show-subtext="true"
+                id="categoryofgoods" name="categoryofgoods">
+                <option value="">None</option>
+                <option selected="selected" value="1">Regular</option>
+                <option value="2">Articles for urgent medical purposes</option>
+                <option value="3">Goods for disaster relief</option>
+                <option value="4">Engines or spare parts for urgent repairs serving a public purpose
+                </option>
+                <option value="5">Perishable goods, which are likely to decay</option>
+                <option value="6">Livestock
+                </option>
+                <option value="7">Pets
+                </option>
+            </select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="categoryofgoods"
+                data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label class="" for="regime">Regime</label>
+            <select class=" form-control selectpicker" data-live-search="true" data-show-subtext="true" id="regime"
+                name="regime">
+                <option selected="selected" value="IM1">Full Definitive Importation</option>
+                <option value="CD4">Courier Importation</option>
+            </select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="regime" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-md-4 form-group">
+            <label class="" for="contents">Contents</label>
+            <input class="form-control text-box single-line" id="contents" name="contents" type="text"
+                value="General merchandise" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="contents"
+                data-valmsg-replace="true"></span>
+        </div>
+        <div class="input-group mb-3">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="csv_file" name="csv_file" accept=".csv" required>
+                <label class="custom-file-label" for="csv_file">Choose CSV file</label>
+            </div>
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+{% endblock %}
